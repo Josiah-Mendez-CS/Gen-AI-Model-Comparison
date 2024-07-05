@@ -71,7 +71,7 @@ def print_results(results_dic, results_stats_dic, model,
 
     print(" ")
 
-    for x,y in results_dic.items():
+    for x,y in results_stats_dic.items():
         if x[0] == 'p':
                 print(x, y)
 
@@ -79,8 +79,10 @@ def print_results(results_dic, results_stats_dic, model,
         print("\nINCORRECT Dog/NOT Dog Assignments:")
 
         for x,y in results_dic.items():
-                if y[2] == 0:
-                        print(y[0], y[1])   
+                if y[3] == 0 and y[4] == 1 or y[3] == 1 and y[4] == 0:
+                        print(y[0], y[1])
+                        print("Pet Label: {:>26}   Classifier Label: {:>30}".format(y[0],
+                                                          y[1]))   
 
     if (print_incorrect_breed and 
         (results_stats_dic['n_correct_dogs'] != results_stats_dic['n_correct_breed']) 
